@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Globalization;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
@@ -81,8 +82,9 @@ namespace RunningMan
             {
                 var count = data.Distance;
                 var complete = data.Complete;
+                var timeReset = DateTime.ParseExact(data.TimeReset, "M/d/yyyy", CultureInfo.InvariantCulture);
 
-                if (data.TimeReset == DateTime.Today.ToShortDateString())
+                if (timeReset <= DateTime.Today)
                 {
                     count = 0;
                     complete = false;
